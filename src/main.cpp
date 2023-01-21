@@ -1,7 +1,5 @@
-#define I2C0_SDA 21
-#define I2C0_SCL 22
-#define I2C1_SDA 18
-#define I2C1_SCL 19
+#define I2C_SDA 21
+#define I2C_SCL 22
 
 #include <Arduino.h>
 #include <tft_io.hpp>
@@ -10,15 +8,12 @@
 using namespace arduino;
 using namespace gfx;
 
-using bus0_t = tft_i2c_ex<0,
-                            I2C0_SDA,
-                            I2C0_SCL>;
-using bus1_t = tft_i2c_ex<1,
-                            I2C1_SDA,
-                            I2C1_SCL>;
+using bus_t = tft_i2c_ex<0,
+                            I2C_SDA,
+                            I2C_SCL>;
 
-using dsp0_t = ssd1306<128,64,bus0_t,3>;
-using dsp1_t = ssd1306<128,64,bus1_t,0>;
+using dsp0_t = ssd1306<128,64,bus_t,3,1,0x3d>;
+using dsp1_t = ssd1306<128,64,bus_t,0,1,0x3c>;
 
 using color_t = color<typename dsp0_t::pixel_type>;
 
